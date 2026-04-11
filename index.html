@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
-<hea
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Portfolio - Ziven Larendra</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap');
-        body { 
-            font-family: 'Comic Neue', cursive; 
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
             background: #ffffff;
             position: relative;
             overflow-x: hidden;
             border: 8px solid #333;
         }
+
         .pencil-sketch {
             background: linear-gradient(transparent 85%, #f0f0f0 85%);
             background-size: 100% 28px;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -28,88 +34,235 @@
             pointer-events: none;
             z-index: 0;
         }
+
         .cloud-nav {
             background: radial-gradient(circle at 30% 30%, #ffffff 0%, #f0f0f0 50%, #e0e0e0 100%);
             border-radius: 50px;
-            box-shadow: 
+            box-shadow:
                 0 10px 30px rgba(0,0,0,0.1),
                 inset 0 2px 0 rgba(255,255,255,0.8),
                 inset 0 -2px 10px rgba(0,0,0,0.05);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(0,0,0,0.1);
         }
-        .train-car {
-            background: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
-            border: 3px solid #333;
-            border-radius: 15px;
-            position: relative;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-        .train-car::before {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: 20%;
-            width: 60%;
-            height: 6px;
-            background: #333;
-            border-radius: 3px;
-        }
-        .wheel {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #333 40%, #111 70%);
-            position: absolute;
-            bottom: -10px;
-            border: 3px solid #fff;
-        }
+
         .nav-link {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .nav-link:hover {
             transform: translateY(-2px) scale(1.05);
             color: #333 !important;
         }
+
+        /* Sidebar mobile */
+        #sidebar {
+            transition: right 0.3s ease;
+        }
+
+        /* Train section */
+        .train-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Responsive home section */
+        @media (max-width: 768px) {
+            body {
+                border: 4px solid #333;
+            }
+
+            #home {
+                min-height: auto;
+                padding-top: 80px;
+                padding-bottom: 3rem;
+            }
+
+            .home-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .home-image {
+                display: none;
+            }
+
+            #home h1 {
+                font-size: 2.2rem !important;
+            }
+
+            #home p.text-xl {
+                font-size: 1rem !important;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn-group a {
+                text-align: center;
+                width: 100%;
+            }
+
+            /* About */
+            #about {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            #about h2 {
+                font-size: 2.2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            #about .rounded-3xl {
+                padding: 1.5rem !important;
+            }
+
+            /* Skills */
+            #skills {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            #skills h2 {
+                font-size: 2.2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            /* Perkecil seluruh train di mobile pakai scale */
+            .train-wrapper {
+                height: 140px !important;
+                transform-origin: left center;
+            }
+
+            .train-wrapper .absolute.bottom-20 {
+                bottom: 32px !important;
+                height: 32px !important;
+            }
+
+            .train-container {
+                transform: scaleY(0.55) scaleX(0.6);
+                transform-origin: left top;
+            }
+
+            #skills p.text-xl {
+                font-size: 0.95rem !important;
+                margin-top: 0.5rem !important;
+            }
+
+            #skills .locomotive {
+                top: 3em;
+            }
+
+            #skills .carriage {
+                top: 5em;
+            }
+
+            /* Projects */
+            #projects {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            #projects h2 {
+                font-size: 2.2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            #projects .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            #projects .rounded-3xl {
+                padding: 1.5rem !important;
+            }
+
+            /* Contact */
+            #contact {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            #contact h2 {
+                font-size: 2.2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            #contact .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            #contact .rounded-3xl {
+                padding: 1.5rem !important;
+                border-width: 4px !important;
+            }
+        }
+
+        @keyframes ball_left {
+            0% { transform: translate(-35%, -35%); }
+            100% { transform: translate(175%, 75%); }
+        }
+        .animate-ball_left {
+            animation: ball_left 2s linear infinite alternate;
+        }
+        @keyframes ball_right {
+            0% { transform: translate(40%, 40%); }
+            100% { transform: translate(-200%, -100%); }
+        }
+        .animate-ball_right {
+            animation: ball_right 2s linear infinite alternate;
+        }
+
+        /* Touch-friendly hover for train on mobile */
+        @media (hover: none) {
+            .group:active .opacity-0 {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body class="relative bg-white text-black">
+
     <!-- Pencil Sketch Background -->
     <div class="pencil-sketch"></div>
 
     <!-- Navbar Desktop -->
-    <nav class="bg-red fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-8 py-4 w-[90vw] max-w-4xl mx-auto">
-        <nav class="hidden md:block cloud-nav fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-4 w-[90vw] max-w-4xl mx-auto">
-            <ul class="flex space-x-8 justify-center items-center font-bold text-lg">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
+    <nav class="cloud-nav hidden md:block fixed top-6 left-1/2 -translate-x-1/2 z-50 px-8 py-4 w-[90vw] max-w-4xl mx-auto">
+        <ul class="flex space-x-8 justify-center items-center font-bold text-lg">
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
     </nav>
 
-    <div id="menu-btn" class="md:hidden fixed top-4 right-6 z-[70] text-3xl cursor-pointer">
+    <!-- Hamburger Button Mobile -->
+    <button id="menu-btn" class="md:hidden fixed top-4 right-6 z-[70] text-3xl cursor-pointer bg-transparent border-none" aria-label="Open menu">
         ☰
-    </div>
-    
-    <!-- Navbar Mobile -->
-    <div id="sidebar" class="fixed top-0 right-[-100%] h-full w-64 bg-white shadow-lg p-6 transition-all duration-300 z-50">
-        <ul class="flex flex-col gap-6 font-bold text-lg mt-35">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+    </button>
+
+    <!-- Navbar Mobile Sidebar (close-btn dihapus, pakai menu-btn saja) -->
+    <div id="sidebar" class="fixed top-0 right-[-100%] h-full w-64 bg-white shadow-lg p-6 z-[60]">
+        <ul class="flex flex-col gap-6 font-bold text-lg mt-16">
+            <li><a href="#home" class="sidebar-link">Home</a></li>
+            <li><a href="#about" class="sidebar-link">About</a></li>
+            <li><a href="#skills" class="sidebar-link">Skills</a></li>
+            <li><a href="#projects" class="sidebar-link">Projects</a></li>
+            <li><a href="#contact" class="sidebar-link">Contact</a></li>
         </ul>
     </div>
-    
-    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-all duration-300 z-40"></div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-all duration-300 z-[55]"></div>
 
     <!-- Home Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center py-24 px-6 relative z-35">
-        <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center">
+    <section id="home" class="min-h-screen flex items-center justify-center py-24 px-6 relative z-30">
+        <div class="max-w-6xl w-full grid md:grid-cols-2 gap-12 items-center home-grid">
             <div class="space-y-8">
                 <h1 class="text-5xl md:text-7xl font-bold leading-tight">
                     Hi! I'm <span class="text-black bg-yellow-300 px-4 py-2 rounded-full inline-block">Ziven Larendra</span>
@@ -117,14 +270,14 @@
                 <p class="text-xl md:text-2xl leading-relaxed max-w-lg">
                     Building fun interactive experiences through code and game design!
                 </p>
-                <div class="flex space-x-4">
-                    <a href="#projects" class="border-4 border-yellow-300 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1">See My Work</a>
-                    <a href="#contact" class="border-4 border-black text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-black hover:text-white transition-all duration-300">Say Hello!</a>
+                <div class="flex flex-wrap gap-4 btn-group">
+                    <a href="#projects" class="border-4 border-yellow-300 text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1 text-center">See My Work</a>
+                    <a href="#contact" class="border-4 border-black text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-black hover:text-white transition-all duration-300 text-center">Say Hello!</a>
                 </div>
             </div>
-            <div class="relative">
+            <div class="relative home-image">
                 <div class="w-full h-96 bg-gradient-to-r from-yellow-200 to-pink-200 rounded-3xl shadow-2xl border-8 border-white relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9IiM5RjZEMkYiLz4KPGNpcmNsZSBjeD0iODAiIGN5PSI0MCIgcj0iMyIgZmlsbD0iI0ZGQjJBNiIvPgo8Y2lyY2xlIGN4PSI0MCIgY3k9IjgwIiByPSIxIiBmaWxsPSIjRkZBRjgwIi8+Cjwvc3ZnPg==')] opacity-30 animate-pulse"></div>
+                    <div class="absolute inset-0 opacity-30 animate-pulse" style="background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjIwIiBjeT0iMjAiIHI9IjIiIGZpbGw9IiM5RjZEMkYiLz4KPGNpcmNsZSBjeD0iODAiIGN5PSI0MCIgcj0iMyIgZmlsbD0iI0ZGQjJBNiIvPgo8Y2lyY2xlIGN4PSI0MCIgY3k9IjgwIiByPSIxIiBmaWxsPSIjRkZBRjgwIi8+Cjwvc3ZnPg==')"></div>
                     <div class="absolute top-8 left-8 w-24 h-24 bg-white rounded-full shadow-lg animate-ball_left"></div>
                     <div class="absolute bottom-8 right-8 w-20 h-20 bg-yellow-300 rounded-full shadow-lg rotate-12 animate-ball_right"></div>
                 </div>
@@ -133,12 +286,12 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 px-6 relative z-35">
+    <section id="about" class="py-32 px-6 relative z-30">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-5xl font-bold mb-16 underline">About Me</h2>
             <div class="max-w-3xl mx-auto bg-white/80 backdrop-blur-xl border-4 border-black rounded-3xl p-12 shadow-2xl">
                 <p class="text-xl leading-relaxed text-gray-800">
-                    I'm a student learning software development and game development. I enjoy building interactive experiences and exploring creative ideas through programming and game design. 
+                    I'm a student learning software development and game development. I enjoy building interactive experiences and exploring creative ideas through programming and game design.
                     <br><br>
                     My playground is code - where pixels dance, stories unfold, and imagination comes to life!
                 </p>
@@ -146,97 +299,97 @@
         </div>
     </section>
 
-    <!-- Skills Section - Train Animation -->
-    <section id="skills" class="py-32 px-6 relative z-35">
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 px-6 relative z-30">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold text-center mb-24 underline">My Skills</h2>
-            <div class="relative h-64 flex items-center justify-center overflow-hidden">
+            <div class="train-wrapper relative h-64 flex items-center justify-center">
                 <!-- Train Track -->
-                <div class="absolute bottom-20 left-0 w-full h-12 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800  shadow-2xl"></div>
-                
+                <div class="absolute bottom-20 left-0 w-full h-12 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 shadow-2xl"></div>
+
                 <!-- Train -->
-                <div class="train-container flex absolute right-[-1500px]">
+                <div class="train-container flex absolute" style="left: 110%;">
                     <!-- Locomotive -->
-                    <div class="w-64 h-24 -mx-8 mb-7 flex items-center justify-center relative -top-4">
-                        <span><img src="Assets/Train.png" alt=""></span>
-                    </div> 
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow">
+                    <div class="locomotive w-64 h-24 -mx-8 mb-7 flex items-center justify-center relative -top-4 flex-shrink-0">
+                        <span><img src="Assets/Train.png" alt="Train locomotive"></span>
+                    </div>
+                    <!-- Carriage: HTML -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Structure of web pages
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             HTML
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: CSS -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Styling and layout design
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             CSS
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: JS -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Adding interactivity to websites
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             JS
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: Tailwind -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Utility-first CSS framework
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             Tailwind
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: React -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Building dynamic user interfaces
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             React
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: GSAP -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Creating smooth animations
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             GSAP
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: C# -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Programming for game development
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             C#
                         </div>
                     </div>
-                    <!-- Gerbong -->
-                    <div class="group w-44 h-20 -mr-8 relative flex items-center justify-center top-4">
-                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-20 bg-white px-2 py-1 rounded shadow text-center">
+                    <!-- Carriage: PHP/Laravel -->
+                    <div class="carriage group w-44 h-20 -mr-8 relative flex items-center justify-center top-4 flex-shrink-0">
+                        <div class="opacity-0 group-hover:opacity-100 transition absolute -top-16 bg-white px-2 py-1 rounded shadow text-center text-sm z-10 whitespace-nowrap">
                             Backend development and web logic
                         </div>
-                        <img src="Assets/Carriage.png" alt="">
-                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5">
+                        <img src="Assets/Carriage.png" alt="Carriage">
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-black -top-5 pointer-events-none">
                             PHP/Laravel
                         </div>
                     </div>
@@ -244,45 +397,47 @@
             </div>
             <p class="text-center text-xl mt-12 font-semibold">Watch my skills on my Train!</p>
         </div>
-    </section> 
+    </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6 relative z-35">
+    <section id="projects" class="py-32 px-6 relative z-30">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-5xl font-bold text-center mb-24 underline">My Projects</h2>
             <div class="grid md:grid-cols-2 gap-12">
                 <!-- Web Design -->
-                <div class="group bg-white border-4 border-black rounded-3xl p-12 hover:-translate-y-4 transition-all duration-500 shadow-2xl hover:shadow-4xl">
+                <div class="group bg-white border-4 border-black rounded-3xl p-12 hover:-translate-y-4 transition-all duration-500 shadow-2xl">
                     <div class="w-full h-auto bg-gradient-to-br from-blue-100 to-purple-200 rounded-2xl mb-8 relative overflow-hidden group-hover:scale-110 transition-transform duration-500">
-                        <img src="Assets/LearnJapanase.png" alt="">
+                        <img src="Assets/LearnJapanase.png" alt="Learn Japanese Project" class="w-full">
                     </div>
                     <h3 class="text-3xl font-bold mb-4 flex items-center"><i class="fas fa-globe mr-3 text-blue-500"></i>Web Design</h3>
                     <p class="text-lg mb-6 text-gray-700">Interactive websites with smooth animations and modern designs.</p>
-                    <a href="https://pepeneviz.github.io/BelajarBahasaJepang/index.html" class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-all duration-300 inline-flex items-center">View Projects <i class="fas fa-arrow-right ml-2"></i></a>
+                    <a href="https://pepeneviz.github.io/BelajarBahasaJepang/index.html" class="bg-black text-white px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-all duration-300 inline-flex items-center">
+                        View Projects <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
                 <!-- Game Projects -->
-                <div class="group bg-white border-4 border-black rounded-3xl p-12 hover:-translate-y-4 transition-all duration-500 shadow-2xl hover:shadow-4xl">
+                <div class="group bg-white border-4 border-black rounded-3xl p-12 hover:-translate-y-4 transition-all duration-500 shadow-2xl">
                     <div class="w-full h-auto rounded-2xl mb-8 relative overflow-hidden group-hover:scale-110 transition-transform duration-500">
-                        <img src="Assets/Echoes of Melody.png" alt="">
+                        <img src="Assets/Echoes of Melody.png" alt="Echoes of Melody Game" class="w-full">
                     </div>
                     <h3 class="text-3xl font-bold mb-4 flex items-center"><i class="fas fa-gamepad mr-3 text-green-500"></i>Game Development</h3>
                     <p class="text-lg mb-6 text-gray-700">Fun and engaging games built with C# and creative game design.</p>
-                    <a class="bg-black text-white px-8 py-3 rounded-full font-bold inline-flex items-center">Coming Soon</a>
+                    <span class="bg-black text-white px-8 py-3 rounded-full font-bold inline-flex items-center opacity-70 cursor-not-allowed">Coming Soon</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-32 px-6 relative z-35">
+    <section id="contact" class="py-32 px-6 relative z-30">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-5xl font-bold mb-16 underline">Let's Connect!</h2>
-            <div class="bg-white/80 backdrop-blur-xl border-8 border-black rounded-3xl p-16 shadow-4xl max-w-2xl mx-auto">
-                <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-white/80 backdrop-blur-xl border-8 border-black rounded-3xl p-16 shadow-2xl max-w-2xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                     <a href="mailto:ziven642@gmail.com" class="group p-6 rounded-2xl border-2 border-black hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105">
                         <i class="fas fa-envelope text-3xl mb-4 block group-hover:animate-bounce"></i>
                         <div class="font-bold text-xl">Email</div>
-                        <div class=" text-xs opacity-75 align-center">ziven642@gmail.com </div>
+                        <div class="text-xs opacity-75 break-all">ziven642@gmail.com</div>
                     </a>
                     <a href="https://instagram.com/pepenevis" class="group p-6 rounded-2xl border-2 border-black hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-105">
                         <i class="fab fa-instagram text-3xl mb-4 block group-hover:animate-pulse"></i>
@@ -301,47 +456,40 @@
     </section>
 
     <script>
-        const menuBtn = document.getElementById("menu-btn")
-        const sidebar = document.getElementById("sidebar")
-        const overlay = document.getElementById("overlay")
-
-        let isOpen = false
+        // --- Sidebar Mobile ---
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("overlay");
 
         function openMenu() {
-            sidebar.classList.remove("right-[-100%]")
-            sidebar.classList.add("right-0")
-
-            overlay.classList.remove("opacity-0", "pointer-events-none")
-            overlay.classList.add("opacity-100")
-
-            document.body.classList.add("overflow-hidden")
-
-            menuBtn.innerText = "✖"
-            isOpen = true
+            sidebar.style.right = "0";
+            overlay.classList.remove("opacity-0", "pointer-events-none");
+            overlay.classList.add("opacity-100");
+            document.body.classList.add("overflow-hidden");
+            menuBtn.innerText = "✖";
         }
 
         function closeMenu() {
-            sidebar.classList.add("right-[-100%]")
-            sidebar.classList.remove("right-0")
-
-            overlay.classList.add("opacity-0", "pointer-events-none")
-            overlay.classList.remove("opacity-100")
-
-            document.body.classList.remove("overflow-hidden")
-
-            menuBtn.innerText = "☰"
-            isOpen = false
+            sidebar.style.right = "-100%";
+            overlay.classList.add("opacity-0", "pointer-events-none");
+            overlay.classList.remove("opacity-100");
+            document.body.classList.remove("overflow-hidden");
+            menuBtn.innerText = "☰";
         }
 
         menuBtn.addEventListener("click", () => {
-            isOpen ? closeMenu() : openMenu()
-        })
+            sidebar.style.right === "0px" ? closeMenu() : openMenu();
+        });
 
-        overlay.addEventListener("click", closeMenu)
+        overlay.addEventListener("click", closeMenu);
 
+        document.querySelectorAll(".sidebar-link").forEach(link => {
+            link.addEventListener("click", closeMenu);
+        });
+
+        // --- GSAP ---
         gsap.registerPlugin(ScrollTrigger);
 
-        // Navbar smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -353,35 +501,49 @@
         });
 
         // Train Animation
-        const trainAnim = gsap.to(".train-container", {
-            x: "-200%",
-            duration: 12,
-            ease: "none",
-            repeat: -1,
-            scrollTrigger: {
-                trigger: "#skills",
-                start: "top 80%",
-                toggleActions: "play none none reverse"
-            }
+        const trainContainer = document.querySelector(".train-container");
+        const trainWrapper = document.querySelector(".train-wrapper");
+
+        function getTrainTravelDistance() {
+            const wrapperWidth = trainWrapper.offsetWidth;
+            const trainWidth = trainContainer.scrollWidth;
+            return wrapperWidth + trainWidth + 100;
+        }
+
+        let trainAnim;
+
+        function initTrainAnim() {
+            if (trainAnim) trainAnim.kill();
+            const distance = getTrainTravelDistance();
+            gsap.set(trainContainer, { x: 0 });
+            trainAnim = gsap.to(trainContainer, {
+                x: -distance,
+                duration: 14,
+                ease: "none",
+                repeat: -1,
+                scrollTrigger: {
+                    trigger: "#skills",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        }
+
+        trainContainer.addEventListener("mouseenter", () => trainAnim && trainAnim.pause());
+        trainContainer.addEventListener("mouseleave", () => trainAnim && trainAnim.play());
+        trainContainer.addEventListener("touchstart", () => trainAnim && trainAnim.pause(), { passive: true });
+        trainContainer.addEventListener("touchend", () => trainAnim && trainAnim.play(), { passive: true });
+
+        window.addEventListener("resize", () => {
+            ScrollTrigger.refresh();
+            initTrainAnim();
         });
 
-        const train = document.querySelector(".train-container")
-        console.log(train)
+        initTrainAnim();
 
-        train.addEventListener("mouseenter", () => {
-            trainAnim.pause()
-        })
-
-        train.addEventListener("mouseleave", () => {
-            trainAnim.play()
-        })
-
-        // Home section animations
+        // Home animations
         gsap.from("#home h1", {
-            scrollTrigger: {
-                trigger: "#home",
-                start: "top 90%"
-            },
+            scrollTrigger: { trigger: "#home", start: "top 90%" },
             y: 100,
             opacity: 0,
             duration: 1,
@@ -389,10 +551,7 @@
         });
 
         gsap.from("#home .bg-gradient-to-r", {
-            scrollTrigger: {
-                trigger: "#home",
-                start: "top 90%"
-            },
+            scrollTrigger: { trigger: "#home", start: "top 90%" },
             scale: 0.8,
             rotation: 35,
             opacity: 0,
@@ -400,63 +559,32 @@
             ease: "back.out(1.7)"
         });
 
-        // About section
         gsap.from("#about .backdrop-blur-xl", {
-            scrollTrigger: {
-                trigger: "#about",
-                start: "top 100%"
-            },
+            scrollTrigger: { trigger: "#about", start: "top 80%" },
             y: 40,
-            opacity: 100,
+            opacity: 0,
             duration: 1,
             ease: "power2.out"
         });
 
-        // Projects hover effects
         document.querySelectorAll('#projects .group').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                gsap.to(card.querySelector('h3'), { scale: 1.1, duration: 0.3 });
+                gsap.to(card.querySelector('h3'), { scale: 1.05, duration: 0.3 });
             });
             card.addEventListener('mouseleave', () => {
                 gsap.to(card.querySelector('h3'), { scale: 1, duration: 0.3 });
             });
         });
 
-        // Continuous floating animation for home buttons
-        gsap.to("#home .rounded-full", {
-            y: -5,
-            rotation: 2,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
-        });
-
-        // Navbar floating effect
-        gsap.to(".cloud-nav", {
-            y: 5,
-            duration: 3,
-            repeat: -1,
-            yoyo: true,
-            ease: "power1.inOut"
-        });
+        if (window.innerWidth >= 768) {
+            gsap.to(".cloud-nav", {
+                y: 5,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+        }
     </script>
-
-    <style>
-        @keyframes ball_left {
-            0% { transform: translate(-35%, -35%); }
-            100% { transform: translate(175%, 75%); }
-        }
-        .animate-ball_left {
-            animation: ball_left 2s linear infinite alternate;
-        }
-        @keyframes ball_right {
-            0% { transform: translate(40%, 40%); }
-            100% { transform: translate(-200%, -100%); }
-        }
-        .animate-ball_right {
-            animation: ball_right 2s linear infinite alternate;
-        }
-    </style>
 </body>
 </html>
